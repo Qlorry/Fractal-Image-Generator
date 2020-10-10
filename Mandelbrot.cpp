@@ -26,8 +26,7 @@ namespace bit {
         while(iter < MAX_ITER) {
             z = z*z + c;
 //            complex<double> t(fabs(z.real()), fabs(z.imag()));
-//            z = tan((((z*z)*z)*z)*z) + c;
-
+//            z = ((t*t)*t) + c;
 
             if(abs(z) > 2) {
                 break;

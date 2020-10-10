@@ -94,8 +94,8 @@ namespace bit {
         std::thread th_arr[THREAD_CNT];
         int cell_h = height / LVL_OF_DIVISION;
         int cell_w = width / LVL_OF_DIVISION;
-//        int additional_h = height - (cell_h * LVL_OF_DIVISION);
-//        int additional_w = width - (cell_w * LVL_OF_DIVISION);
+        int additional_h = height - (cell_h * LVL_OF_DIVISION);
+        int additional_w = width - (cell_w * LVL_OF_DIVISION);
         int curr_x = 0;
         int curr_y = 0;
         int next_x = 0;
@@ -104,8 +104,11 @@ namespace bit {
 
         for (int y = 0; y < LVL_OF_DIVISION; y++) {
             next_y = curr_y + cell_h;
+            if(y == LVL_OF_DIVISION - 1){next_y += additional_h;}
+
             for (int x = 0; x < LVL_OF_DIVISION; x++) {
                 next_x = curr_x + cell_w;
+                if(x == LVL_OF_DIVISION - 1){next_x += additional_w;}
                 task.push({dot(curr_x, curr_y), dot(next_x, next_y)});
                 curr_x = next_x;
             }
@@ -259,7 +262,7 @@ namespace bit {
 
     void FractalCreator::setThCnt(int th_cnt) {
         this->THREAD_CNT = th_cnt;
-        CELL_CNT = THREAD_CNT * 20;
+        CELL_CNT = THREAD_CNT * 10;
         LVL_OF_DIVISION = sqrt(CELL_CNT);
     }
 

@@ -23,7 +23,6 @@ namespace bit {
     
     bool Bitmap::writeBMP(string filename)
     {
-        
         BitmapFile fileHeader;
         BitmapInfo infoHeader;
         
@@ -37,7 +36,9 @@ namespace bit {
         ofstream file;
         file.open(filename, ios::out | ios::binary);
         
-        if (!file) {return false;}
+        if (!file.is_open()) {
+            return false;
+        }
         
         file.write((char *) &fileHeader, sizeof(fileHeader));
         file.write((char *) &infoHeader, sizeof(infoHeader));
